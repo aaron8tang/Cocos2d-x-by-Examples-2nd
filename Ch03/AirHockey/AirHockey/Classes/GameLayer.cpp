@@ -13,23 +13,18 @@ GameLayer::GameLayer ()
 {
 }
 
-Scene* GameLayer::scene()
+Scene* GameLayer::createScene()
 {
-    auto scene = Scene::create();
-    
-    auto layer = GameLayer::create();
-
-    scene->addChild(layer);
-
-    return scene;
+    return GameLayer::create();
 }
+
 
 // on "init" you need to initialize your instance
 bool GameLayer::init()
 {
     //////////////////////////////
     // 1. super init first
-    if ( !Layer::init() )
+    if ( !Scene::init() )
     {
         return false;
     }
@@ -41,7 +36,7 @@ bool GameLayer::init()
     _player2Score = 0;
     
 	//get screen size
-	_screenSize = Director::getInstance()->getWinSize();
+    auto _screenSize = Director::getInstance()->getVisibleSize();
     
 	//1. add court image
     auto court = Sprite::create("court.png");
@@ -88,7 +83,8 @@ bool GameLayer::init()
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     
     //create main loop
-    this->scheduleUpdate();
+	//加上这个，球显示不出来
+    //this->scheduleUpdate();
     
     return true;
 }

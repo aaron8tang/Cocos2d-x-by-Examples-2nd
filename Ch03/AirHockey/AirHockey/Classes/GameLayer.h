@@ -8,7 +8,7 @@
 
 using namespace cocos2d;
 
-class GameLayer : public Layer
+class GameLayer : public cocos2d::Scene
 {
 	
     GameSprite* _player1;
@@ -27,14 +27,12 @@ class GameLayer : public Layer
     void playerScore (int player);
 
 public:
-    
-    GameLayer();
-    virtual ~GameLayer();
+	GameLayer();
+	virtual ~GameLayer();
+
+    static cocos2d::Scene* createScene();    
     
     virtual bool init();
-
-    static Scene* scene();
-
     
     void onTouchesBegan(const std::vector<Touch*> &touches, Event* event);
     void onTouchesMoved(const std::vector<Touch*> &touches, Event* event);
