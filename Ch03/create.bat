@@ -1,0 +1,1 @@
+cocos new AirHockey -p com.rengelbert.AirHockey -l cpp -d .
